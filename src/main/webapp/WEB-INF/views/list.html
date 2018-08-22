@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Product</title>
+</head>
+<body>
+<h1>List Product</h1>
+<a th:href="@{/product/create}">Create</a>
+<div th:if="${success}">
+    <span th:text="${success}"></span>
+</div>
+<table>
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>Code</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${product}">
+        <td th:text="${row.getId()}"></td>
+        <td><a th:href="@{/product/{id}/view(id=${row.getId()})}" th:text="${row.getCode()}"></a></td>
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getPrice()}"></td>
+        <td><a th:href="@{/product/{id}/edit(id=${row.getId()})}">Edit</a></td>
+        <td><a th:href="@{/product/{id}/delete(id=${row.getId()})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<footer th:fragment="footer">
+    &copy; CodeGym
+</footer>
+</html>
